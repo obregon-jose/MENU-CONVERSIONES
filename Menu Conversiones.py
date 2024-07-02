@@ -1,108 +1,132 @@
+def decimalToBinario(num):
+    if (num == 0):
+        return "0"
+    binario = ""
+    while num > 0:
+        residuo = int(num % 2)
+        num = int(num / 2)
+        binario = str(residuo) + binario
+    return binario
+    
+def decimalToOctal(num):
+    if (num == 0):
+        return "0"
+    octal = ""
+    while (num > 0):
+        residuo = (num % 8) 
+        num= int(num/8)
+        octal= str(residuo) + octal
+    return octal
+
+def decimalToHexadecimal(num):
+    if (num == 0):
+        return "0"
+    hexadecimal = "" 
+    while num != 0: 
+        rem = Cambiar(num % 16)
+        num = int(num / 16)
+        hexadecimal = str(rem) + hexadecimal
+    return hexadecimal
+def Cambiar(cambios):
+    decimales = [10, 11, 12, 13, 14, 15]
+    hexadecimal = ["A", "B", "C", "D", "E", "F"]
+    for i in range(len(decimales)):
+        if (cambios == decimales[i]):
+            cambios = hexadecimal[i]
+            break
+    return cambios
+
+def binarioToDecimal(binario):
+    num = 0
+    exp = 0
+    while(binario > 0):
+        cadena = binario%10
+        binario = int(binario/10)
+        num = num + cadena*pow(2, exp)
+        exp = exp + 1
+    return num
+
+def octalToDecimal(octal):
+    num = 0
+    exp = 1
+    while(octal):
+        cadena = octal % 10
+        octal = int(octal/10)
+        num = num + cadena * exp
+        exp = exp * 8
+    return num
+
+def es_binario(numero):
+    numero_str = str(numero)
+    for digito in numero_str:
+        if digito not in ['0', '1']:
+            return False
+    return True
+def es_octal(numero):
+    numero_str = str(numero)
+    for digito in numero_str:
+        if digito not in ['0', '1', '2', '3', '4', '5', '6', '7']:
+            return False
+    return True
+
 def menu():
-    menuconv = '''            //////////////////////////////////////////////////
+    menuconv = '''            
+            //////////////////////////////////////////////////
+            ///                                            ///
             ///    MENÚ CONVERSIÓN DE SISTEMAS NUMÉRICOS   ///
             ///                                            ///
-            ///     1. Conversión decimal a binario        ///           
-            ///     2. Conversión binario a decimal        ///
-            ///     3. Conversión decimal a octal          ///
-            ///     4. Conversión octal a decimal          ///
-            ///     5. Conversión decimal a hexadecimal    ///
-            ///     6. Conversión hexadecimal a decimal    ///
-            ///     7. Conversión octal a hexadecimal      ///
-            ///     8. Conversión hexadecimal a octal      ///
-            ///     9. Conversión hexadecimal a binario    ///
-            ///    10. Conversión octal a binario          ///
-            ///    11. Cerrar/Salir                        ///                    
+            ///          1) Entero -> Binario              /// 1
+            ///          2) Entero -> Octal                /// 1 
+            ///          3) Entero -> Hexadecimal          /// 1
+            ///          4) Binario -> Entero              /// 1
+            ///          5) Octal -> Entero                /// 1
+            ///          6) Octal -> Binario               /// 0
+            ///          7) Octal -> Hexadecimal           /// 0
+            ///          8) Hexadecimal -> Entero          /// 0
+            ///          9) Hexadecimal -> Binario         /// 0
+            ///         10) Hexadecimal -> Octal           /// 0
+            ///          0) Cerrar / Salir                 ///
+            ///                                            ///                    
             //////////////////////////////////////////////////
             
-            Digite una opción < 1 - 11 >:'''                  
+            Ingrese una opción del menú: '''                  
         
-    opcion = 0
-    while(opcion != 11):
+    opcion = ''
+    while(opcion != 0):
         opcion = int(input(menuconv))
 
-        if opcion == 1: #Conversión decimal – binario
-            num = int(input("Ingresa un número decimal: "))
-            def deci_bina(num):
-                if num ==0:
-                    return "0"
-                binario = ""
-                while num >=1:
-                    residuo = int(num % 2)
-                    num = int(num / 2)
-                    binario = str(residuo) + binario
-                return binario
-            binario = deci_bina(num)
-            lista=[binario]
-            print (f'el numero decimal: {num} en binario es: {lista}')
+        if (opcion == 1):
+            num = int(input("Ingrese un número decimal: "))
+            binario = decimalToBinario(num)
+            print (f'el numero decimal: {num} en binario es: {[binario]}')
+
+        elif (opcion == 2):
+            num = int(input("Ingrese un número decimal: "))
+            octal = decimalToOctal(num)
+            print (f'el numero decimal: {num} en octal es: {[octal]}')
+
+        elif (opcion == 3):
+            num = int(input("Ingrese un numero positivo para convertirlo a hexadecimal: "))
+            hexadecimal = decimalToHexadecimal(num)
+            print (f'el numero decimal: {num} en hexadecimal es: {[hexadecimal]}') 
             
-        elif opcion == 2: #Conversión binario – decimal
-            binario = int(input("ingrese un numero binario: "))
-            def bina_deci(binario):
-                num=0
-                exp=0
-                while(binario>=1):
-                    cadena=binario%10
-                    binario=int(binario/10)
-                    num = num + cadena*pow(2, exp)
-                    exp = exp + 1
-                print(f'el binario ingresado en numero decimal es: {[num]}')
-            bina_deci(binario)
+        elif (opcion == 4):
+            num = int(input("Ingresa un número binario: "))
+            if es_binario(num):
+                decimal = binarioToDecimal(num)
+                print (f'el numero binario: {num} en decimal es: {[decimal]}')
+            else:
+                print(f'el numero {num} no es binario.')
 
-        elif opcion == 3: #Conversión decimal – octal
-            num = int (input("Ingresa un número decimal: "))
-            def deci_oct(num):
-                if (num ==0 ):
-                    return "0"
-                octal = ""
-                while num >0:
-                    residuo = num%8
-                    octal=str(residuo)+ octal
-                    num= int (num/8)
-                return octal
-            octal = deci_oct(num)
-            print (f'el numero: {num} en octal es: {[octal]}')
+        elif (opcion == 5):
+            num = int(input("Ingrese un numero octal: "))
+            if es_octal(num):
+                decimal = octalToDecimal(num)
+                print (f'el numero octal: {num} en decimal es: {[decimal]}')
+            else:
+                print(f'el numero {num} no es octal.')
 
-        elif opcion == 4: #Convertir octal - decimal
-            num = int(input("ingrese un numero octal: "))
-            def octal_deci(num):
-                deci = 0
-                exp = 1
-                l=[]
-                def string_int(data): 
-                    for i in str(data):
-                        l.append(int(i))
-                string_int(num)
-                if (8 in l) or (9 in l):
-                    return f'NO VALIDO, EL NUMERO {num} NO ES OCTAL'
-                else:
-                    while(num):
-                        cadena = num % 10
-                        num = int(num/10)
-                        deci = deci+ cadena * exp
-                        exp = exp *8
-                    return deci
-            print(f'el octal {num} en decimal es: {octal_deci(num)}')
-            
-        elif opcion == 5: #Conversión decimal – hexadecimal
-            def DecimalAHexadecimal(): 
-                decimal = int(input("Introduzca un numero positivo para convertirlo a hexadecimal: ")) 
-                hexadecimal = "" 
-                while decimal != 0: 
-                    rem = Cambiar(decimal % 16)
-                    hexadecimal = str(rem) + hexadecimal
-                    decimal = int(decimal / 16)
-                print("El resultado en hexadecimal es: " + hexadecimal) 
-            def Cambiar(cambios):
-                decimales =     [10 , 11 , 12 , 13 , 14 , 15 ]
-                hexadecimal = ["A", "B", "C", "D", "E", "F"]
-                for c in range(7):
-                    if cambios == decimales[c - 1]:
-                        cambios = hexadecimal[c - 1]
-                return cambios
-            DecimalAHexadecimal()
-
-        elif opcion == 6: #Conversión hexadecimal – decimal
+        elif opcion == 8: #Conversión hexadecimal – decimal
             def obtener_valor_real(cambios_hexadecimal):
                 cambios = {
                     "f": 15,
@@ -167,7 +191,7 @@ def menu():
             else:
                 print(f'el numero {num} no es octal')
         
-        elif opcion == 8: #Conversión hexadecimal – octal
+        elif opcion == 10: #Conversión hexadecimal – octal
             hexa = str(input("ingrese número hexadecimal (letras en Mayúscula): "))
             exp = 0
             num = 0
@@ -258,7 +282,7 @@ def menu():
                     
             hexa_binario()
 
-        elif opcion == 10: #Conversión octal - binario
+        elif opcion == 6: #Conversión octal - binario
             def octal_binario():
                 z=0
                 list=[]
@@ -292,7 +316,8 @@ def menu():
                     print(f"error {hexa} no es octal, vuelva a escribir")
             octal_binario()
         
-        elif opcion == 11: print("Ha salido del menu!")
+        elif opcion == 0: print("Ha salido del menu!")
         else: print ("OPCIÓN NO ENCONTRADA, por favor digite una de las opciones del menu")          
 
 menu()
+
