@@ -1,7 +1,7 @@
 # Sistema de Conversiones Numéricos
 
 <div align="center">
-  <img src="assets/images/image.png" width="64" alt="Menu Conversiones" />
+  <img src="assets/images/image.png" width="200" alt="Menu Conversiones" />
 </div>
 
 <!-- <br />
@@ -29,4 +29,5 @@ PROGRAMACIÓN IMPERATIVA: El programa de conversión de sistemas numéricos perm
 ### Algunas fuentes de consulta
 
 [Convertir Sistemas de Numeración](https://www.mathepower.com/es/sistemas_de_numeracion.php)
+
 [Conversión entre sistemas](https://www.aulafacil.com/cursos/hardware/arquitectura-de-computadores/conversion-entre-sistemas-l33098#:~:text=Para%20convertir%20desde%20el%20sistema,entera%20se%20anota%20el%20residuo)
