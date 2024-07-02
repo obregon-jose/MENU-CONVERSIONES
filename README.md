@@ -1,7 +1,11 @@
 # Sistema de Conversiones Numéricos
 
 <div align="center">
-  <img src="assets/images/image.png" width="200" alt="Menu Conversiones" />
+  <img src="images/menu.png" alt="Menu Conversiones" />
+</div>
+
+<div align="center">
+  <img src="https://img.shields.io/badge/Python-3.12-blue?style=flat-square&logo=python"/>
 </div>
 
 <!-- <br />
@@ -11,20 +15,15 @@
 
 PROGRAMACIÓN IMPERATIVA: El programa de conversión de sistemas numéricos permite al usuario realizar operaciones de conversión entre diferentes sistemas numéricos. Al ejecutar el programa, esta muestra un menú  de opciones donde el usuario puede seleccionar si desea convertir de decimal a otro sistema, o bien  de binario o hexadecimal a decimal. Dependiendo de la opción elegida, el programa solicitará al usuario que ingrese el número a convertir y el sistema de origen o destino, para luego mostrar el resultado de la conversión.
 
-<!-- ### 
-***         MENÚ CONVERSIÓN DE SISTEMAS NUMÉRICOS *** 
-1. Conversión binario – decimal 
-2. Conversión decimal – binario 
-3. Conversión decimal – octal 
-4. Conversión octal – decimal 
-5. Conversión decimal – hexadecimal 
-6. Conversión hexadecimal – decimal 
-7. Conversión octal – hexadecimal 
-8. Conversión hexadecimal – octal 
-9. Conversión hexadecimal – binario 
-10. Conversión octal -binario 
-11. Salida
- -->
+
+### Funciones disponibles
+
+- Conversión de entero –> (binario; octal; hexadecimal)
+- Conversión de binario –> (entero)   
+- Conversión de octal –> (entero; binario; hexadecimal) 
+- Conversión de hexadecimal –> (entero; binario; octal) 
+
+#### Próximamente mas metodos de conversion y funciones propias para cada uno
 
 ### Algunas fuentes de consulta
 

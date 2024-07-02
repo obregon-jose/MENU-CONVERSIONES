@@ -1,3 +1,4 @@
+# Funciones de conversión
 def decimalToBinario(num):
     if (num == 0):
         return "0"
@@ -39,7 +40,7 @@ def Cambiar(cambios):
 def binarioToDecimal(binario):
     num = 0
     exp = 0
-    while(binario > 0):
+    while (binario > 0):
         cadena = binario%10
         binario = int(binario/10)
         num = num + cadena*pow(2, exp)
@@ -56,6 +57,83 @@ def octalToDecimal(octal):
         exp = exp * 8
     return num
 
+def octalToBinario(octal):
+    if (octal == 0):
+        return "0"
+    binario = ""
+    lista = []
+    for i in range(len(octal)):
+        if (octal[i]=='0'):
+            lista.append('000')
+        elif (octal[i]=='1'):
+            lista.append('001')
+        elif (octal[i]=='2'):
+            lista.append('010')
+        elif (octal[i]=='3'):
+            lista.append('011')
+        elif (octal[i]=='4'):
+            lista.append('100')
+        elif (octal[i]=='5'):
+            lista.append('101')
+        elif (octal[i]=='6'):
+            lista.append('110')
+        else:
+            lista.append('111')
+            
+    for i in range (len(lista)):
+        binario = binario + lista[i]
+
+    return binario.lstrip("0")
+def hexadecimalToBinario(hexadecimal):
+    if (hexadecimal == 0):
+        return "0"
+    binario = ""
+    lista=[]
+    for i in range (len(hexadecimal)):
+        if (hexadecimal[i]=='0'):
+            lista.append('000')
+        elif (hexadecimal[i]=='1'):
+            lista.append('001')
+        elif (hexadecimal[i]=='2'):
+            lista.append('010')
+        elif (hexadecimal[i]=='3'):
+            lista.append('011')
+        elif (hexadecimal[i]=='4'):
+            lista.append('100')
+        elif (hexadecimal[i]=='5'):
+            lista.append('101')
+        elif (hexadecimal[i]=='6'):
+            lista.append('110')
+        elif (hexadecimal[i]=='7'):
+            lista.append('111')
+        elif (hexadecimal[i]=='8'):
+            lista.append('1000')
+        elif (hexadecimal[i]=='9'):
+            lista.append('1001')
+        elif (hexadecimal[i]=='A' or hexadecimal[i]=='a'):
+            lista.append('1010')
+        elif (hexadecimal[i]=='B' or hexadecimal[i]=='b'):
+            lista.append('1011')
+        elif (hexadecimal[i]=='C' or hexadecimal[i]=='c'):
+            lista.append('1100')
+        elif (hexadecimal[i]=='D' or hexadecimal[i]=='d'):
+            lista.append('1101')
+        elif (hexadecimal[i]=='E' or hexadecimal[i]=='e'):
+            lista.append('1110')
+        elif (hexadecimal[i]=='F' or hexadecimal[i]=='f'):
+            lista.append('1111')
+        else:
+            binario = 1 # REVISAR VALIDACION
+            break
+
+    if (binario == ""):
+        for i in range (len(lista)):
+            binario = binario + lista[i]
+        return binario
+    else:
+        print("error, vuelva a escribir")
+        
+## Validaciones
 def es_binario(numero):
     numero_str = str(numero)
     for digito in numero_str:
@@ -80,11 +158,11 @@ def menu():
             ///          3) Entero -> Hexadecimal          /// 1
             ///          4) Binario -> Entero              /// 1
             ///          5) Octal -> Entero                /// 1
-            ///          6) Octal -> Binario               /// 0
-            ///          7) Octal -> Hexadecimal           /// 0
-            ///          8) Hexadecimal -> Entero          /// 0
-            ///          9) Hexadecimal -> Binario         /// 0
-            ///         10) Hexadecimal -> Octal           /// 0
+            ///          6) Octal -> Binario               /// 1
+            ///          7) Octal -> Hexadecimal           /// 1_
+            ///          8) Hexadecimal -> Entero          /// 1_
+            ///          9) Hexadecimal -> Binario         /// 1
+            ///         10) Hexadecimal -> Octal           /// 1_
             ///          0) Cerrar / Salir                 ///
             ///                                            ///                    
             //////////////////////////////////////////////////
@@ -96,12 +174,12 @@ def menu():
         opcion = int(input(menuconv))
 
         if (opcion == 1):
-            num = int(input("Ingrese un número decimal: "))
+            num = int(input("Ingrese un número Entero: "))
             binario = decimalToBinario(num)
             print (f'el numero decimal: {num} en binario es: {[binario]}')
 
         elif (opcion == 2):
-            num = int(input("Ingrese un número decimal: "))
+            num = int(input("Ingrese un número Entero: "))
             octal = decimalToOctal(num)
             print (f'el numero decimal: {num} en octal es: {[octal]}')
 
@@ -125,113 +203,33 @@ def menu():
                 print (f'el numero octal: {num} en decimal es: {[decimal]}')
             else:
                 print(f'el numero {num} no es octal.')
-
-        elif opcion == 8: #Conversión hexadecimal – decimal
-            def obtener_valor_real(cambios_hexadecimal):
-                cambios = {
-                    "f": 15,
-                    "e": 14,
-                    "d": 13,
-                    "c": 12,
-                    "b": 11,
-                    "a": 10,
-                }
-                if cambios_hexadecimal in cambios:
-                    return cambios[cambios_hexadecimal]
-                else:
-                    return int(cambios_hexadecimal)
-            def hexadecimal_decimal(hexadecimal):
-                hexadecimal = hexadecimal.lower()
-                hexadecimal = hexadecimal[::-1]
-                decimal = 0
-                posicion = 0
-                for cambiar in hexadecimal:
-                    valor = obtener_valor_real(cambiar)
-                    elevado = 16 ** posicion
-                    equivalencia = elevado * valor
-                    decimal += equivalencia
-                    posicion += 1
-                return decimal
-            hexadecimal = input("Ingresa un número hexadecimal: ")
-            decimal = hexadecimal_decimal(hexadecimal)
-            print(f"El hexadecimal {hexadecimal} es {decimal} en decimal")
-
-        elif opcion == 7: #Conversión octal – hexadecimal
-            num = int(input("Ingrese un número octal:   "))
-            exp = 0
-            i = 0
-            decnum = 0
-            while num!=0:
-                rem = num%10
-                print(rem)
-                if rem>7:
-                    exp = 1
-                    break
-                decnum = decnum + (rem * (8 ** i))
-                i = i+1
-                num = int(num/10)
-            if exp == 0:
-                i = 0
-                hexdecnum = []
-                while decnum != 0:
-                    rem = decnum % 16
-                    if rem < 10:
-                        rem = rem + 48
-                    else:
-                        rem = rem + 55
-                    rem = chr(rem)
-                    hexdecnum.insert(i, rem)
-                    i = i + 1
-                    decnum = int(decnum / 16)
-                print("El octal ingresado en hexadecimal es:   ")
-                i = i - 1
-                while i >= 0:
-                    print(end=hexdecnum[i])
-                    i = i - 1
-            else:
-                print(f'el numero {num} no es octal')
         
-        elif opcion == 10: #Conversión hexadecimal – octal
-            hexa = str(input("ingrese número hexadecimal (letras en Mayúscula): "))
-            exp = 0
-            num = 0
-            hexad = len(hexa)
-            hexad = hexad-1
-            i = 0
-            while hexad>=0:
-                rem = hexa[hexad]
-                if rem>='0' and rem<='9':
-                    rem = int(rem)
-                elif rem>='A' and rem<='F':
-                    rem = ord(rem)
-                    rem = rem-55
-                elif rem>='a' and rem<='f':
-                    rem = ord(rem)
-                    rem = rem-87
-                else:
-                    exp = 1
-                    break
-                num = num + (rem * (16 ** i))
-                hexad = hexad-1
-                i = i+1
-            if exp==0:
-                i = 0
-                octnum = []
-                while num!=0:
-                    rem = num%8
-                    octnum.insert(i, rem)
-                    i = i+1
-                    num = int(num/8)
-                print("El hexadecimal ingresado en octal es: ")
-                i = i-1
-                while i>=0:
-                    print(octnum[i], end="")
-                    i = i-1
-                print()
+        elif (opcion == 6):
+            num = str(input("Ingrese un número octal: "))
+            if es_octal(num):
+                binario = octalToBinario(num)
+                print (f'el numero octal: {num} en binario es: {[binario]}')
             else:
-                print(f"el numero {hexa} no es hexadecimal!")
+                print(f'el numero {num} no es octal.')
         
-        elif opcion == 9: #Conversión hexadecimal – binario
+        elif (opcion == 7):
+            num = int(input("Ingrese un número octal: "))
+            if es_octal(num):
+                hexadecimal = decimalToHexadecimal(octalToDecimal(num))
+                #CREAR FUNCIÓN PROPIA PENDIENTE octalToHexadecimal(num)
+                print (f'el numero octal: {num} en hexadecimal es: {[hexadecimal]}')
+            else:
+                print(f'el numero {num} no es octal.')
+        #MEJORAR
+        elif (opcion == 8):
+            num = int(input("Ingrese un número hexadecimal: "))
+            decimal = binarioToDecimal(hexadecimalToBinario(num))
+            print (f'el numero hexadecimal: {num} en decimal es: {[decimal]}')
+        elif (opcion == 9):
+            num = str(input("Ingrese un número hexadecimal: "))
+            binario = hexadecimalToBinario(num)
+            print (f'el numero hexadecimal: {num} en binario es: {[binario]}')
+   
             def hexa_binario():
                 z=0
                 list=[]
@@ -281,43 +279,12 @@ def menu():
                     print("error, vuelva a escribir")
                     
             hexa_binario()
+        elif (opcion == 10):
+            num = int(input("Ingrese un número hexadecimal: "))
+            octal = decimalToOctal(binarioToDecimal(hexadecimalToBinario(num)))
+            print (f'el numero hexadecimal: {num} en octal es: {[octal]}')
 
-        elif opcion == 6: #Conversión octal - binario
-            def octal_binario():
-                z=0
-                list=[]
-                hexa=str(input("ingrese octal:  "))
-                contador=0
-                for contador in range (len(hexa)):
-                    if hexa[contador]=='0':
-                        list.append('000')
-                    elif hexa[contador]=='1':
-                        list.append('001')
-                    elif hexa[contador]=='2':
-                        list.append('010')
-                    elif hexa[contador]=='3':
-                        list.append('011')
-                    elif hexa[contador]=='4':
-                        list.append('100')
-                    elif hexa[contador]=='5':
-                        list.append('101')
-                    elif hexa[contador]=='6':
-                        list.append('110')
-                    elif hexa[contador]=='7':
-                        list.append('111')
-                    else:
-                        z=1
-                        break
-                    contador+=1
-                if z==0:
-                    for i in range (len(list)):
-                        print(list[i])
-                else:
-                    print(f"error {hexa} no es octal, vuelva a escribir")
-            octal_binario()
-        
-        elif opcion == 0: print("Ha salido del menu!")
-        else: print ("OPCIÓN NO ENCONTRADA, por favor digite una de las opciones del menu")          
+        elif opcion == 0: print("!Has salido del menu!")
+        else: print ("OPCIÓN NO ENCONTRADA, por favor digite una de las opciones del menu.")          
 
 menu()
-
